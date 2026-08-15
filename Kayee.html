@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>For You ❤️</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            overflow: hidden;
+            font-family: Georgia, "Times New Roman", serif;
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    -45deg,
+                    #ffd6e7,
+                    #ffe5d5,
+                    #f8d9ff,
+                    #ffd1dc
+                );
+
+            background-size: 400% 400%;
+            animation: backgroundMove 12s ease infinite;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: #9b214f;
+        }
+
+
+        /* =========================
+           ROMANTIC BACKGROUND
+        ========================= */
+
+        .glow {
+            position: fixed;
+            width: 350px;
+            height: 350px;
+
+            border-radius: 50%;
+
+            background: rgba(255, 105, 180, 0.25);
+
+            filter: blur(100px);
+
+            pointer-events: none;
+        }
+
+        .glow1 {
+            top: -120px;
+            left: -120px;
+
+            animation: glow1 8s infinite alternate;
+        }
+
+        .glow2 {
+            right: -120px;
+            bottom: -120px;
+
+            animation: glow2 8s infinite alternate;
+        }
+
+
+        /* =========================
+           CONTENT
+        ========================= */
+
+        .container {
+            position: relative;
+            z-index: 10;
+
+            width: 90%;
+            max-width: 800px;
+        }
+
+        h1 {
+            font-size: clamp(48px, 10vw, 90px);
+
+            margin: 0;
+
+            color: #a51c50;
+
+            text-shadow:
+                0 0 10px white,
+                0 0 25px rgba(255, 105, 180, .5);
+
+            animation: entrance 1.5s ease;
+        }
+
+        .subtitle {
+            font-size: clamp(18px, 4vw, 25px);
+
+            margin: 15px 0 35px;
+
+            color: #9b4867;
+
+            animation: fadeIn 2s ease;
+        }
+
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        #button {
+            width: 220px;
+            height: 85px;
+
+            border: 3px solid #ff8eb7;
+            border-radius: 50px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff7eaa,
+                    #ff4f91
+                );
+
+            color: white;
+
+            font-size: 27px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 8px 25px rgba(255,79,145,.4),
+                0 0 25px rgba(255,105,180,.4);
+
+            animation: buttonPulse 2s infinite;
+
+            transition: .3s;
+        }
+
+        #button:hover {
+            transform: scale(1.1);
+        }
+
+        #button:active {
+            transform: scale(.95);
+        }
+
+
+        /* =========================
+           MESSAGE
+        ========================= */
+
+        #message {
+            display: none;
+
+            font-size: clamp(26px, 5vw, 46px);
+
+            line-height: 1.5;
+
+            color: #b01750;
+
+            text-shadow:
+                0 0 10px white,
+                0 0 20px rgba(255,105,180,.4);
+
+            animation: messageIn 1.5s ease;
+        }
+
+        .big-heart {
+            display: block;
+
+            font-size: 70px;
+
+            margin-bottom: 10px;
+
+            animation: heartbeat 1.2s infinite;
+        }
+
+
+        /* =========================
+           GIF
+        ========================= */
+
+        #kiss {
+            display: none;
+
+            width: 400px;
+            max-width: 90%;
+
+            margin: 20px auto;
+
+            border-radius: 25px;
+
+            box-shadow:
+                0 0 25px rgba(255,80,140,.5),
+                0 15px 40px rgba(120,20,60,.25);
+
+            animation: kissIn 1.5s ease;
+        }
+
+
+        /* =========================
+           YOUTUBE BACKGROUND MUSIC
+        ========================= */
+
+        #music {
+            position: fixed;
+
+            width: 1px;
+            height: 1px;
+
+            left: -100px;
+            top: -100px;
+
+            opacity: 0;
+
+            pointer-events: none;
+        }
+
+
+        /* =========================
+           FLOATING HEARTS
+        ========================= */
+
+        .heart {
+            position: fixed;
+
+            bottom: -60px;
+
+            z-index: 2;
+
+            pointer-events: none;
+
+            animation:
+                floatUp linear forwards;
+        }
+
+
+        /* =========================
+           SPARKLES
+        ========================= */
+
+        .sparkle {
+            position: fixed;
+
+            color: white;
+
+            font-size: 20px;
+
+            pointer-events: none;
+
+            animation:
+                sparkle 2s ease-in-out infinite;
+        }
+
+
+        /* =========================
+           ANIMATIONS
+        ========================= */
+
+        @keyframes backgroundMove {
+
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes entrance {
+
+            from {
+                opacity: 0;
+                transform:
+                    translateY(-50px)
+                    scale(.8);
+            }
+
+            to {
+                opacity: 1;
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes buttonPulse {
+
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes heartbeat {
+
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            15% {
+                transform: scale(1.25);
+            }
+
+            30% {
+                transform: scale(1);
+            }
+
+            45% {
+                transform: scale(1.2);
+            }
+
+            60% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes messageIn {
+
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes kissIn {
+
+            from {
+                opacity: 0;
+                transform:
+                    scale(.5)
+                    translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform:
+                    scale(1)
+                    translateY(0);
+            }
+        }
+
+        @keyframes floatUp {
+
+            0% {
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            50% {
+                transform:
+                    translateY(-50vh)
+                    rotate(180deg);
+
+                opacity: .8;
+            }
+
+            100% {
+                transform:
+                    translateY(-110vh)
+                    rotate(360deg);
+
+                opacity: 0;
+            }
+        }
+
+        @keyframes sparkle {
+
+            0%, 100% {
+                opacity: 0;
+                transform: scale(.5);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+        }
+
+        @keyframes glow1 {
+
+            from {
+                transform: translate(0,0);
+            }
+
+            to {
+                transform: translate(100px,80px);
+            }
+        }
+
+        @keyframes glow2 {
+
+            from {
+                transform: translate(0,0);
+            }
+
+            to {
+                transform: translate(-100px,-80px);
+            }
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            #button {
+                width: 190px;
+                height: 75px;
+                font-size: 23px;
+            }
+
+            #kiss {
+                width: 320px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- Background glow -->
+
+    <div class="glow glow1"></div>
+    <div class="glow glow2"></div>
+
+
+    <!-- Main page -->
+
+    <div class="container">
+
+        <h1>
+            Hi Kayee! 💗
+        </h1>
+
+        <div class="subtitle">
+            I have a little surprise for you... 💌
+        </div>
+
+
+        <button
+            id="button"
+            onclick="startSurprise()">
+
+            Click Me 💕
+
+        </button>
+
+
+        <div id="message">
+
+            <span class="big-heart">
+                ❤️
+            </span>
+
+            <span id="typed"></span>
+
+        </div>
+
+
+        <img
+            id="kiss"
+            src="https://media1.tenor.com/m/LH2g7V4-H4kAAAAd/kiss-lip-kiss.gif"
+            alt="Kiss ❤️"
+        >
+
+    </div>
+
+
+    <!--
+        HIDDEN YOUTUBE MUSIC
+
+        Your YouTube link:
+        https://youtu.be/kdk2K5CiOEg
+
+        Video ID:
+        kdk2K5CiOEg
+    -->
+
+    <div id="music">
+        <div id="youtube"></div>
+    </div>
+
+
+    <!-- YouTube API -->
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+
+    <script>
+
+        let musicPlayer = null;
+
+
+        /*
+         * Create YouTube player
+         */
+
+        function onYouTubeIframeAPIReady() {
+
+            musicPlayer = new YT.Player(
+                "youtube",
+                {
+
+                    width: "1",
+                    height: "1",
+
+                    videoId: "kdk2K5CiOEg",
+
+                    playerVars: {
+
+                        autoplay: 0,
+
+                        controls: 0,
+
+                        rel: 0,
+
+                        playsinline: 1,
+
+                        loop: 1,
+
+                        playlist: "kdk2K5CiOEg"
+
+                    },
+
+                    events: {
+
+                        onReady: function(event) {
+
+                            event.target.setVolume(70);
+
+                        }
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        /*
+         * CLICK BUTTON
+         */
+
+        function startSurprise() {
+
+
+            /* Hide button */
+
+            document
+                .getElementById("button")
+                .style.display = "none";
+
+
+            /* Change subtitle */
+
+            document
+                .querySelector(".subtitle")
+                .innerHTML =
+                "This is just for you... 💗";
+
+
+            /* Show message */
+
+            document
+                .getElementById("message")
+                .style.display = "block";
+
+
+            /* Show kiss */
+
+            document
+                .getElementById("kiss")
+                .style.display = "block";
+
+
+            /*
+             * START YOUTUBE MUSIC
+             */
+
+            if (musicPlayer) {
+
+                musicPlayer.setVolume(70);
+
+                musicPlayer.playVideo();
+
+            }
+
+
+            /* Typewriter */
+
+            typeWriter();
+
+
+            /* Hearts */
+
+            setInterval(
+                createHeart,
+                300
+            );
+
+
+            /* Sparkles */
+
+            setInterval(
+                createSparkle,
+                450
+            );
+
+        }
+
+
+        /*
+         * TYPEWRITER
+         */
+
+        function typeWriter() {
+
+            const element =
+                document.getElementById("typed");
+
+
+            const text =
+                "YOU'RE THE PRETTIEST, MY AVERY!! 💗\n\nMWAAAAAA 😘❤️";
+
+
+            let i = 0;
+
+
+            element.innerHTML = "";
+
+
+            function write() {
+
+                if (i < text.length) {
+
+                    if (text[i] === "\n") {
+
+                        element.innerHTML += "<br>";
+
+                    } else {
+
+                        element.innerHTML +=
+                            text[i];
+
+                    }
+
+                    i++;
+
+                    setTimeout(
+                        write,
+                        70
+                    );
+                }
+
+            }
+
+            write();
+
+        }
+
+
+        /*
+         * FLOATING HEARTS
+         */
+
+        function createHeart() {
+
+            const heart =
+                document.createElement("div");
+
+
+            heart.className =
+                "heart";
+
+
+            const heartList = [
+
+                "❤️",
+                "💗",
+                "💖",
+                "💕",
+                "💓",
+                "💞",
+                "💘"
+
+            ];
+
+
+            heart.innerHTML =
+                heartList[
+                    Math.floor(
+                        Math.random() *
+                        heartList.length
+                    )
+                ];
+
+
+            heart.style.left =
+                Math.random() * 100 + "vw";
+
+
+            heart.style.fontSize =
+                15 +
+                Math.random() * 30 +
+                "px";
+
+
+            heart.style.animationDuration =
+                4 +
+                Math.random() * 5 +
+                "s";
+
+
+            document.body.appendChild(
+                heart
+            );
+
+
+            setTimeout(
+                () => heart.remove(),
+                9000
+            );
+
+        }
+
+
+        /*
+         * SPARKLES
+         */
+
+        function createSparkle() {
+
+            const sparkle =
+                document.createElement("div");
+
+
+            sparkle.className =
+                "sparkle";
+
+
+            sparkle.innerHTML =
+                "✦";
+
+
+            sparkle.style.left =
+                Math.random() * 100 + "vw";
+
+
+            sparkle.style.top =
+                Math.random() * 100 + "vh";
+
+
+            document.body.appendChild(
+                sparkle
+            );
+
+
+            setTimeout(
+                () => sparkle.remove(),
+                2000
+            );
+
+        }
+
+    </script>
+
+</body>
+      </html>
