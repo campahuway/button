@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You ❤️</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            overflow: hidden;
+            font-family: "Georgia", serif;
+            background: linear-gradient(
+                -45deg,
+                #ffd6e7,
+                #ffe4d6,
+                #f8d9ff,
+                #ffd1dc
+            );
+            background-size: 400% 400%;
+            animation: gradient 12s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #8b2148;
+        }
+
+        /* Background glow */
+
+        .glow {
+            position: fixed;
+            width: 350px;
+            height: 350px;
+            background: rgba(255, 105, 180, 0.25);
+            filter: blur(100px);
+            border-radius: 50%;
+            animation: glowMove 8s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+
+        .glow.one {
+            top: -100px;
+            left: -100px;
+        }
+
+        .glow.two {
+            bottom: -100px;
+            right: -100px;
+            animation-delay: 3s;
+        }
+
+        /* Main container */
+
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 800px;
+            padding: 40px 20px;
+        }
+
+        .greeting {
+            font-size: clamp(45px, 10vw, 90px);
+            margin: 0 0 20px;
+            color: #a51c50;
+            text-shadow:
+                0 0 10px rgba(255,255,255,0.8),
+                0 0 25px rgba(255,105,180,0.5);
+            animation: entrance 1.5s ease;
+        }
+
+        .subtitle {
+            font-size: 22px;
+            color: #9b4867;
+            margin-bottom: 35px;
+            animation: fadeIn 2s ease;
+        }
+
+        /* Button */
+
+        #button {
+            width: 220px;
+            height: 85px;
+            border: 3px solid #ff8eb7;
+            border-radius: 50px;
+            background: linear-gradient(
+                135deg,
+                #ff7eaa,
+                #ff4f91
+            );
+            color: white;
+            font-size: 27px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow:
+                0 8px 25px rgba(255, 79, 145, 0.4),
+                0 0 20px rgba(255, 105, 180, 0.3);
+            transition: 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        #button:hover {
+            transform: scale(1.1);
+            box-shadow:
+                0 10px 35px rgba(255, 79, 145, 0.6),
+                0 0 35px rgba(255, 105, 180, 0.5);
+        }
+
+        #button:active {
+            transform: scale(0.95);
+        }
+
+        /* Message */
+
+        #message {
+            display: none;
+            margin: 20px auto;
+            min-height: 130px;
+            max-width: 750px;
+            padding: 20px;
+            font-size: clamp(25px, 5vw, 45px);
+            line-height: 1.5;
+            color: #b01750;
+            text-shadow: 0 0 10px rgba(255,255,255,0.8);
+        }
+
+        .heart-big {
+            display: block;
+            font-size: 65px;
+            animation: heartbeat 1.2s infinite;
+            margin-bottom: 10px;
+        }
+
+        /* GIF */
+
+        #img {
+            display: none;
+            width: 400px;
+            max-width: 90%;
+            margin: 20px auto;
+            border-radius: 25px;
+            box-shadow:
+                0 0 20px rgba(255, 80, 140, 0.4),
+                0 15px 40px rgba(120, 20, 60, 0.25);
+            animation: gifEntrance 1.5s ease;
+        }
+
+        /* Floating hearts */
+
+        .heart {
+            position: fixed;
+            bottom: -50px;
+            font-size: 25px;
+            pointer-events: none;
+            z-index: 1;
+            animation: floatHeart linear forwards;
+        }
+
+        /* Sparkles */
+
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            color: white;
+            font-size: 18px;
+            animation: sparkle 2s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        /* Animations */
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes entrance {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            15% {
+                transform: scale(1.25);
+            }
+
+            30% {
+                transform: scale(1);
+            }
+
+            45% {
+                transform: scale(1.2);
+            }
+
+            60% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes gifEntrance {
+            from {
+                opacity: 0;
+                transform: scale(0.5) translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(0.8);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            50% {
+                transform: translateY(-50vh) rotate(180deg) scale(1.2);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-110vh) rotate(360deg) scale(0.7);
+                opacity: 0;
+            }
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+        }
+
+        @keyframes glowMove {
+            from {
+                transform: translate(0, 0);
+            }
+
+            to {
+                transform: translate(100px, 80px);
+            }
+        }
+
+        /* Mobile */
+
+        @media (max-width: 600px) {
+
+            .container {
+                padding: 20px 10px;
+            }
+
+            .greeting {
+                font-size: 48px;
+            }
+
+            .subtitle {
+                font-size: 18px;
+            }
+
+            #button {
+                width: 190px;
+                height: 75px;
+                font-size: 23px;
+            }
+
+            #message {
+                font-size: 27px;
+            }
+
+            #img {
+                width: 320px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Background glow -->
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+
+    <!-- Main content -->
+    <div class="container">
+
+        <h1 class="greeting">
+            Hi Kayee! 💗
+        </h1>
+
+        <p class="subtitle">
+            I have a little surprise for you...
+        </p>
+
+        <button id="button" onclick="myFunction()">
+            Click Me 💕
+        </button>
+
+        <div id="message">
+            <span class="heart-big">❤️</span>
+            <span id="typewriter"></span>
+        </div>
+
+        <img
+            id="img"
+            src="https://media1.tenor.com/m/LH2g7V4-H4kAAAAd/kiss-lip-kiss.gif"
+            alt="Kiss"
+        >
+
+    </div>
+
+    <!-- Music -->
+    <audio
+        id="audio"
+        src="https://sndup.net/wtk7/d"
+        preload="auto">
+    </audio>
+
+
+    <script>
+
+        const message =
+            "YOU'RE THE PRETTIEST, MY AVERY!! 💗<br><br>" +
+            "MWAAAAAA 😘❤️";
+
+        function myFunction() {
+
+            // Hide button
+            document.getElementById("button").style.display = "none";
+
+            // Change subtitle
+            document.querySelector(".subtitle").innerHTML =
+                "This is just for you... 💌";
+
+            // Show message
+            const messageBox = document.getElementById("message");
+            messageBox.style.display = "block";
+
+            // Show GIF
+            const image = document.getElementById("img");
+            image.style.display = "block";
+
+            // Play music
+            const audio = document.getElementById("audio");
+
+            audio.loop = true;
+
+            audio.play().catch(function(error) {
+                console.log("Audio could not play:", error);
+            });
+
+            // Start typewriter
+            typeWriter();
+
+            // Start hearts
+            setInterval(createHeart, 350);
+
+            // Start sparkles
+            setInterval(createSparkle, 500);
+        }
+
+
+        /* Typewriter effect */
+
+        function typeWriter() {
+
+            const textElement =
+                document.getElementById("typewriter");
+
+            let i = 0;
+
+            // Convert <br> into line breaks
+            const text =
+                "YOU'RE THE PRETTIEST, MY AVERY!! 💗\n\nMWAAAAAA 😘❤️";
+
+            textElement.innerHTML = "";
+
+            function type() {
+
+                if (i < text.length) {
+
+                    if (text[i] === "\n") {
+
+                        textElement.innerHTML += "<br>";
+
+                    } else {
+
+                        textElement.innerHTML += text[i];
+
+                    }
+
+                    i++;
+
+                    setTimeout(type, 70);
+                }
+            }
+
+            type();
+        }
+
+
+        /* Floating hearts */
+
+        function createHeart() {
+
+            const heart = document.createElement("div");
+
+            heart.classList.add("heart");
+
+            const hearts = [
+                "❤️",
+                "💗",
+                "💖",
+                "💕",
+                "💓",
+                "💞",
+                "💘"
+            ];
+
+            heart.innerHTML =
+                hearts[Math.floor(Math.random() * hearts.length)];
+
+            heart.style.left =
+                Math.random() * 100 + "vw";
+
+            heart.style.fontSize =
+                (15 + Math.random() * 30) + "px";
+
+            heart.style.animationDuration =
+                (4 + Math.random() * 5) + "s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 9000);
+        }
+
+
+        /* Sparkles */
+
+        function createSparkle() {
+
+            const sparkle = document.createElement("div");
+
+            sparkle.classList.add("sparkle");
+
+            sparkle.innerHTML = "✦";
+
+            sparkle.style.left =
+                Math.random() * 100 + "vw";
+
+            sparkle.style.top =
+                Math.random() * 100 + "vh";
+
+            sparkle.style.animationDuration =
+                (1 + Math.random() * 2) + "s";
+
+            document.body.appendChild(sparkle);
+
+            setTimeout(() => {
+                sparkle.remove();
+            }, 2500);
+        }
+
+    </script>
+
+</body>
+</html>
