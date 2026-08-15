@@ -1,0 +1,66 @@
+ <!DOCTYPE html> 
+    <html lang="en"> 
+         <head>  
+            <meta charset="UTF-8"> 
+            <title>For You</title> 
+            <style>
+
+                html{
+                    background-color: bisque;
+                }
+                
+                img{
+                    display: none;
+                    width: 400px;
+                  
+                    
+                }
+                button{
+                    width: 200px;
+                    height: 100px;
+                    font-size: 30px;
+                    font-weight: bold;
+                    cursor: pointer;
+                    border-radius: 30px;
+                    border-color: aquamarine;
+                    border-width: 5px;
+                }
+                button:hover{
+                    background-color: rgb(163, 228, 206)
+
+                
+                }
+                h1{
+                    font-size: 100px;
+                    margin-top: 150px;
+                }
+            </style>
+        </head>
+ 
+         <body> 
+            
+         <center><h1>Hi Kayee!</h1>
+             <button onclick="myfunction()" onclick="show()" onclick="play()" id="button">Click Me</button> <br> <br> 
+              <span id="res" style="color:red;
+                   font-weight:bold; font-size: 50px; "><h1></h1></span> </center>
+        <center><img id="img" src="https://media1.tenor.com/m/LH2g7V4-H4kAAAAd/kiss-lip-kiss.gif"></center>
+        <audio id="audio" src="https://sndup.net/wtk7/d"></audio>
+    <script> 
+        function myfunction(){
+    document.getElementById('res').innerHTML="YOU'RE THE PRETTIEST MY AVERY!!<br>MWAAAAAA&#10084;"
+        
+    var audio = document.getElementById("audio");
+        audio.play();
+        audio.loop = true;
+
+            document.getElementById('img')
+                    .style.display = "block";
+            
+             document.getElementById('button')
+                    .style.display = "none";
+        }
+    
+     </script>
+
+     </body>
+    </html>
